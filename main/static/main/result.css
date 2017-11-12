@@ -1,5 +1,10 @@
+h1 {
+    text-align: center;
+}
+
+
 .table-result {
-    display: block;
+    /* display: block; */
     /* text-align: center; */
     max-width: 600px;
     /* width:600px;  */
@@ -8,10 +13,6 @@
     margin:0 auto;
     position: relative;
     
-}
-
-h1 {
-    text-align: center;
 }
 
 button {

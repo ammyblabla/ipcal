@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,53 +8,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="result.css">
+  <link rel="stylesheet" type="text/css" href="{% static '/main/result.css' %}">
   
   </head>
   <body>
     <br>
     <h1>Result!</h1>
     <br>
-    <table class="table-result table table-responsive table-hover">
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td colspan="2">IP Address </td>
-          <td>@twitter</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td colspan="2">Network Address</td>
-          <td>@twitter</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Visible host IP range</td>
-          <td>@twitter</td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td colspan="2">Broadcast address</td>
-          <td>@twitter</td>
-        </tr>
-        <tr>
-          <th scope="row">5</th>
-          <td colspan="2">Total number of host</td>
-          <td>@twitter</td>
-        </tr>
-        <tr>
-          <th scope="row">6</th>
-          <td colspan="2">Subnet mask</td>
-          <td>@twitter</td>
-        </tr>
-        <tr>
-            <th scope="row">7</th>
-            <td colspan="2">Class</td>
-            <td>@twitter</td>
-          </tr>
-      </tbody>
-    </table>
+    <div class="container">
+      <div class="wrapper">
+        <table class="table-result table table-responsive table-hover text-centered">
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td colspan="2">IP Address </td>
+              <td>@twitter</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td colspan="2">Network Address</td>
+              <td>@twitter</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td colspan="2">Visible host IP range</td>
+              <td>@twitter</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td colspan="2">Broadcast address</td>
+              <td>@twitter</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td colspan="2">Total number of host</td>
+              <td>@twitter</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td colspan="2">Subnet mask</td>
+              <td>@twitter</td>
+            </tr>
+            <tr>
+                <th scope="row">7</th>
+                <td colspan="2">Class</td>
+                <td>@twitter</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <button type="submit" class="btn btn-success">Go Back!</button>    
   </body>
 </html>
