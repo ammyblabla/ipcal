@@ -15,51 +15,53 @@
   </head>
   <body>
     <br>
-    <h1>Result!</h1>
+    <h1>Result! {{ ip_full }} </h1>
     <br>
     <div class="container">
       <div class="wrapper">
         <table class="table-result table table-responsive table-hover text-centered">
           <tbody>
             <tr>
-              <th scope="row">1</th>
               <td colspan="2">IP Address </td>
-              <td>@twitter</td>
+              <td>{{ ip }}</td>
             </tr>
             <tr>
-              <th scope="row">2</th>
               <td colspan="2">Network Address</td>
-              <td>@twitter</td>
+              <td>{{ network_address }}</td>
             </tr>
             <tr>
-              <th scope="row">3</th>
               <td colspan="2">Visible host IP range</td>
-              <td>@twitter</td>
+              <td>{{ usable_range }}</td>
             </tr>
             <tr>
-              <th scope="row">4</th>
               <td colspan="2">Broadcast address</td>
-              <td>@twitter</td>
+              <td>{{ broadcast_address }}</td>
             </tr>
             <tr>
-              <th scope="row">5</th>
               <td colspan="2">Total number of host</td>
-              <td>@twitter</td>
+              <td>{{ ip_amount }}</td>
             </tr>
             <tr>
-              <th scope="row">6</th>
+              <td colspan="2">Number of Usable Hosts</td>
+              <td>{{ ip_usable }}</td>
+            </tr>
+            <tr>
               <td colspan="2">Subnet mask</td>
-              <td>@twitter</td>
+              <td>{{ subnet }}</td>
             </tr>
             <tr>
-                <th scope="row">7</th>
-                <td colspan="2">Class</td>
-                <td>@twitter</td>
-              </tr>
+              <td colspan="2">Class</td>
+              <td>{{ class }}</td>
+            </tr>
+            <tr>
+              <td colspan="2">CIDR Notation</td>
+              <td>{{ prefix }}</td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <a type="submit" class="btn btn-success">Go Back!</button>    
+    <a href="{% url 'index' %}"><button type="submit" class="btn btn-danger" name="submit" href="{% url 'index' %}">Go Back!</button></a>
+      
   </body>
 </html>
