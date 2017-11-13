@@ -12,6 +12,13 @@ def gen_subnet(prefix):
     # print(subnet_int)
     return ipaddress.IPv4Address(subnet_int)
 
+def is_ip(ip_str):
+    try:
+        ip = ipaddress.IPv4Address(ip_str)
+        return True
+    except:
+        return False
+
 def network_address(ip, prefix):
     subnet = int(gen_subnet(prefix))
     ip_int = int(ip)
