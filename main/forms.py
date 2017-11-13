@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm,TextInput,FileInput
 
 class InputForm(forms.Form):
-    ip = forms.CharField(
+    ip = forms.GenericIPAddressField(
         label='IP', 
         max_length=15,
         widget = forms.TextInput(

@@ -15,18 +15,19 @@ prefix = 0
 
 # Create your views here.
 def index(request):
+    global ip_str,prefix
     if request.method == 'POST':        
         input_form = InputForm(data=request.POST)
         if input_form.is_valid():
             clean = input_form.cleaned_data
-            print(clean)
-            global ip_str,prefix
             ip_str = clean['ip']
-            prefix = int(clean['prefix'])
+            if is_ip(ip_str):
+                print(clean)
+                ip_str = clean['ip']
+                prefix = int(clean['prefix'])
+                return redirect("/result")
         else:
             print(input_form.errors)
-        return redirect("/result")
-       
     else:
         print('else')
         input_form = InputForm()
