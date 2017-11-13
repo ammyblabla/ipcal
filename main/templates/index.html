@@ -19,17 +19,21 @@
     <div class="container">
       <div class="wrapper">
         <br>
-        <form class="form-cal">
+        <form class="form-cal" method = "POST" name="submit" value="submit" action="">
+          {% csrf_token %}
+          {% comment %} {{ input_form }} {% endcomment %}
           <div class="form-group">
             <label for="exampleInputEmail1">IPv4 Address</label>
-            <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ex. 158.108.125.125">
+            {{ input_form.ip }}
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Prefix</label>
-            <input class="form-control" id="exampleInputPassword1" placeholder="1-31">
+            {{ input_form.prefix }}
+            <!-- <input class="form-control" id="exampleInputPassword1" placeholder="1-31" name="prefix"> -->
           </div>
           <br>
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success" name="submit" href="{% url 'result' %}" value="submit" >Submit</button>
+          <a href="{% url 'result' %}" class="btn btn-info" role="button" name="submit">Link Button</a>          
         </form>
       </div>
     </div>

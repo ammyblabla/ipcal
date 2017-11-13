@@ -54,18 +54,32 @@ def get_class(ip):
     else:
         return 'E'
 
-if __name__ == '__main__':
-    # ip_str = input()
-    # prefix = int(input())
-    ip_str = '158.108.12.24'
-    ip = ipaddress.IPv4Address(ip_str)
-    prefix = 24
-    subnet = gen_subnet(prefix)
-    ip_network = get_ip_network(ip, prefix)
-    # print(network_address(ip, prefix))
-    # print(broadcast_address(ip, prefix))
-    # print(host_no(prefix))
-    # print(ip)
-    # print(get_ip_network(ip, prefix))
-    # print(get_all_host(ip_network))
-    print(get_class(ip))
+def usable_range(ip_addr, prefix):
+    upper_bound = str(broadcast_address(ip_addr, prefix)-1)
+    lower_bound = str(network_address(ip_addr, prefix)+1)
+    return lower_bound + ' - ' + upper_bound
+
+# if __name__ == '__main__':
+#     # ip_str = input()
+#     # prefix = int(input())
+#     ip_str = '158.108.12.24'
+#     ip = ipaddress.IPv4Address(ip_str)
+#     prefix = 24
+#     subnet = gen_subnet(prefix)
+#     ip_network = get_ip_network(ip, prefix)
+#     # print(network_address(ip, prefix))
+#     # print(broadcast_address(ip, prefix))
+#     # print(host_no(prefix))
+#     # print(ip)
+#     # print(get_ip_network(ip, prefix))
+#     # print(get_all_host(ip_network))
+#     print(usable_range(ip, prefix))
+
+# ip
+# network address
+# useable host ip range
+# broadcast address
+# total number of hosts
+# subnet mask
+# ip class
+# cidr notation (prefix)

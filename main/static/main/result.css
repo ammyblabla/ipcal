@@ -4,7 +4,7 @@ h1 {
 
 
 .table-result {
-    /* display: block; */
+    display: block;
     /* text-align: center; */
     max-width: 600px;
     /* width:600px;  */
