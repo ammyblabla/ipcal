@@ -25,7 +25,7 @@ SECRET_KEY = 'shh#*20(nxk_+pra!yj(_h5nj3&ymq49e^6tug&b)_10yzy)b!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ipcal.pythonanywhere.com']
 
 
 # Application definition
