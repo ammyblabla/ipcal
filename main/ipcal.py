@@ -25,7 +25,7 @@ def is_ip(ip_str):
 def is_prefix(prefix_str):
     try:
         prefix = int(prefix_str)
-        if (prefix > 0) and (prefix < 32):
+        if (prefix > 0) and (prefix <= 32):
             return True
         return False
     except:
@@ -50,9 +50,13 @@ def broadcast_address(ip, prefix):
     return ans
 
 def host_no(prefix):
+    if prefix == 32:
+        return 1
     return 2**(32-prefix)
 
 def usable_host_no(prefix):
+    if prefix == 32:
+        return 0
     return host_no(prefix) - 2
 
 def get_all_host(ip_network):

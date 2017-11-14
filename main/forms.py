@@ -19,7 +19,7 @@ class InputForm(forms.Form):
     prefix = forms.IntegerField(
         label='Prefix', 
         min_value=1, 
-        max_value=31,
+        max_value=32,
         widget = forms.TextInput(
             attrs = {
                         'class': 'form-control', 
