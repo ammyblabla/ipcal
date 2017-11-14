@@ -21,11 +21,10 @@ def index(request):
         if input_form.is_valid():
             clean = input_form.cleaned_data
             ip_str = clean['ip']
-            if is_ip(ip_str):
-                print(clean)
-                ip_str = clean['ip']
-                prefix = int(clean['prefix'])
-                return redirect("/result")
+            # print(clean)
+            ip_str = clean['ip']
+            prefix = int(clean['prefix'])
+            return redirect("/result")
         else:
             print(input_form.errors)
     else:

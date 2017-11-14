@@ -12,6 +12,9 @@ def gen_subnet(prefix):
     # print(subnet_int)
     return ipaddress.IPv4Address(subnet_int)
 
+def wildcard_mask(ip):
+    return ipaddress.IPv4Address(bit_not(int(ip)))
+
 def is_ip(ip_str):
     try:
         ip = ipaddress.IPv4Address(ip_str)
@@ -75,13 +78,54 @@ def usable_range(ip_addr, prefix):
     lower_bound = str(network_address(ip_addr, prefix)+1)
     return lower_bound + ' - ' + upper_bound
 
+def binary_ip(ip):
+    ip_bin = bin(int(ip))
+    ip_str = str(ip_bin)[2::]
+    return ip_str
+
+def binary_subnet_mask(prefix):
+    subnet_str = str(gen_subnet(prefix))
+    subnet_list_str = subnet_str.split('.')
+    subnet_bin_str = []
+    for i in subnet_list_str:
+        binary_str =  binary_ip(i)
+        print(binary_str)
+        subnet_bin_str.append(binary_str)
+    point = '.'
+    return point.join(subnet_bin_str)
+
+def hex_ip(ip):
+    return str(hex(int(ip)))[2::]
+
+def ip_type(ip):
+    if ip.is_multicast:
+        return 'multicast'
+    elif ip.is_global:
+        return 'global'
+    elif ip.is_unspecified:
+        return 'unspecifed'
+    elif ip.is_loopback:
+        return 'loopback'
+    elif ip.is_link_local:
+        return 'link local'
+    elif ip.is_site_local:
+        return 'is site local'
+    elif ip.is_reserved:
+        return 'reserved'
+    elif ip.is_private:
+        return 'private'
+    else:
+        return 'public'
+        
+
 # if __name__ == '__main__':
 #     # ip_str = input()
 #     # prefix = int(input())
-#     ip_str = '158.108.12.24'
-#     ip = ipaddress.IPv4Address(ip_str)
-#     prefix = 24
-#     subnet = gen_subnet(prefix)
+    # ip_str = '158.108.12.24'
+    # ip_str = '127.0.0.0'
+    # ip = ipaddress.IPv4Address(ip_str)
+    # prefix = 24
+    # subnet = gen_subnet(prefix)
 #     ip_network = get_ip_network(ip, prefix)
 #     # print(network_address(ip, prefix))
 #     # print(broadcast_address(ip, prefix))
@@ -90,7 +134,11 @@ def usable_range(ip_addr, prefix):
 #     # print(get_ip_network(ip, prefix))
 #     # print(get_all_host(ip_network))
 #     print(usable_range(ip, prefix))
-
+    # print(wildcard_mask(ip))
+    # wildcard_mask = wildcard_mask(ip)
+    # print(subnet)
+    # print(binary_subnet_mask(prefix))
+    # print(ip_type(ip))
 # ip
 # network address
 # useable host ip range

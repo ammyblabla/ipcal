@@ -20,3 +20,13 @@ button {
     margin-right:50%;
     position: relative;
 }
+
+tbody {
+    align: center;
+    display: block;    
+    margin-left:50%;
+    margin-right:50%;
+    margin:0 auto;
+    position: relative;
+    width: 600px;
+}

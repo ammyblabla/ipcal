@@ -4,10 +4,10 @@ h1 {
 
 .form-cal
 {
+    width:600px; 
     display: block;
     /* text-align: center; */
     /* max-width: 600px; */
-    width:600px; 
     margin-left:50%;
     margin-right:50%;
     margin:0 auto;
@@ -28,6 +28,6 @@ button {
     position: relative;
 }
 
-input {
-    width: 400px;
+.input-box {
+    width: 400px
 }
