@@ -47,7 +47,13 @@ def result(request):
         'ip_usable' : usable_host_no(prefix),
         'subnet' : str(gen_subnet(prefix)),
         'class' : get_class(ip),
-        'usable_range' : usable_range(ip, prefix)
+        'usable_range' : usable_range(ip, prefix), 
+        'type' : ip_type(ip),
+        'binary_ip' : binary_ip(ip),
+        'wildcard_mask' : str(wildcard_mask(prefix)),
+        'binary_subnet_mask' : binary_subnet_mask(prefix),
+        'hex_ip' :hex_ip(ip),
+        'int_ip' : int(ip),
     }
     # print(ip_str, prefix)
     print(context)

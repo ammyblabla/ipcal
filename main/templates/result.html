@@ -15,7 +15,7 @@
   </head>
   <body>
     <br>
-    <h1>Result! {{ ip_full }} </h1>
+    <h1>Result!</h1>
     <br>
     <div class="container">
       <div class="wrapper">
@@ -30,7 +30,7 @@
               <td>{{ network_address }}</td>
             </tr>
             <tr>
-              <td colspan="2">Visible host IP range</td>
+              <td colspan="2">Usable Host IP Range</td>
               <td>{{ usable_range }}</td>
             </tr>
             <tr>
@@ -50,12 +50,40 @@
               <td>{{ subnet }}</td>
             </tr>
             <tr>
-              <td colspan="2">Class</td>
+              <td colspan="2">Wildcard Mask</td>
+              <td>{{ wildcard_mask }}</td>
+            </tr>
+            <tr>
+              <td colspan="2">Binary Subnet Mask</td>
+              <td>{{ binary_subnet_mask }}</td>
+            </tr>
+            <tr>
+              <td colspan="2">IP Class</td>
               <td>{{ class }}</td>
             </tr>
             <tr>
               <td colspan="2">CIDR Notation</td>
               <td>{{ prefix }}</td>
+            </tr>
+            <tr>
+              <td colspan="2">IP Type</td>
+              <td>{{ type }}</td>
+            </tr>
+            <tr>
+              <td colspan="2">short</td>
+              <td>{{ ip_full }}</td>
+            </tr>
+            <tr>
+              <td colspan="2">Binary ID</td>
+              <td>{{ binary_ip }}</td>
+            </tr>
+            <tr>
+              <td colspan="2">Integer ID</td>
+              <td>{{ int_ip }}</td>
+            </tr>
+            <tr>
+              <td colspan="2">Hex ID</td>
+              <td>{{ hex_ip }}</td>
             </tr>
           </tbody>
         </table>
