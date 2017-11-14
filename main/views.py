@@ -40,7 +40,7 @@ def result(request):
     context = {
         'ip_full': str(get_ip_network(ip, prefix)),
         'ip': ip_str,
-        'prefix' : prefix,
+        'prefix' : '/'+str(prefix),
         'network_address' : str(network_address(ip, prefix)),
         'broadcast_address' : str(broadcast_address(ip, prefix)),
         'ip_amount' : host_no(prefix),
