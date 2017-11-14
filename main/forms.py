@@ -25,7 +25,7 @@ class InputForm(forms.Form):
                         'class': 'form-control', 
                         'id': 'exampleInputPassword1',
                         'type': 'text',
-                        'placeholder': "1-31",
+                        'placeholder': "1-32",
                         'name': 'prefix'
                     }
         )
