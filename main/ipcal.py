@@ -13,7 +13,13 @@ def gen_subnet(prefix):
     return ipaddress.IPv4Address(subnet_int)
 
 def wildcard_mask(ip):
-    return ipaddress.IPv4Address(bit_not(int(ip)))
+    # print(ip)
+    subnet = gen_subnet(ip)
+    ip_not_int = bit_not(int(subnet))
+    # print(bin(ip_not_int))
+    ip_not = ipaddress.IPv4Address(ip_not_int)
+    # print(ip_not)
+    return ip_not
 
 def is_ip(ip_str):
     try:
@@ -103,33 +109,25 @@ def hex_ip(ip):
 
 def ip_type(ip):
     if ip.is_multicast:
-        return 'multicast'
-    elif ip.is_global:
-        return 'global'
-    elif ip.is_unspecified:
-        return 'unspecifed'
+        return 'Multicast'
     elif ip.is_loopback:
-        return 'loopback'
-    elif ip.is_link_local:
-        return 'link local'
-    elif ip.is_site_local:
-        return 'is site local'
-    elif ip.is_reserved:
-        return 'reserved'
+        return 'Loopback'
     elif ip.is_private:
-        return 'private'
+        return 'Private'
     else:
-        return 'public'
+        return 'Public'
         
 
 # if __name__ == '__main__':
 #     # ip_str = input()
 #     # prefix = int(input())
-    # ip_str = '158.108.12.24'
-    # ip_str = '127.0.0.0'
-    # ip = ipaddress.IPv4Address(ip_str)
-    # prefix = 24
-    # subnet = gen_subnet(prefix)
+#     # ip_str = '158.108.12.24'
+#     ip_str = '255.255.255.255'
+#     ip = ipaddress.IPv4Address(ip_str)
+#     prefix = 32
+#     print(wildcard_mask(prefix))
+#     print(bin(int(wildcard_mask(prefix))))
+#     subnet = gen_subnet(prefix)
 #     ip_network = get_ip_network(ip, prefix)
 #     # print(network_address(ip, prefix))
 #     # print(broadcast_address(ip, prefix))
@@ -140,14 +138,6 @@ def ip_type(ip):
 #     print(usable_range(ip, prefix))
     # print(wildcard_mask(ip))
     # wildcard_mask = wildcard_mask(ip)
-    # print(subnet)
+    # print(bin(int(subnet)))
     # print(binary_subnet_mask(prefix))
     # print(ip_type(ip))
-# ip
-# network address
-# useable host ip range
-# broadcast address
-# total number of hosts
-# subnet mask
-# ip class
-# cidr notation (prefix)
