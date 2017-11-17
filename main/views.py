@@ -54,6 +54,7 @@ def result(request):
         'binary_subnet_mask' : binary_subnet_mask(prefix),
         'hex_ip' :hex_ip(ip),
         'int_ip' : int(ip),
+        'all_possible_network' : all_possible_network(ip, prefix),
     }
     # print(ip_str, prefix)
     print(context)

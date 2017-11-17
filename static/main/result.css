@@ -2,26 +2,13 @@ h1 {
     text-align: center;
 }
 
-
-.table-result {
-    display: block;
-    /* text-align: center; */
-    max-width: 600px;
-    /* width:600px;  */
-    margin-left:50%;
-    margin-right:50%;
-    margin:0 auto;
-    position: relative;
-    
-}
-
 button {
     margin-left:50%;
     margin-right:50%;
     position: relative;
 }
 
-tbody {
+.detail-table {
     align: center;
     display: block;    
     margin-left:50%;
@@ -29,4 +16,14 @@ tbody {
     margin:0 auto;
     position: relative;
     width: 600px;
+}
+
+.all-possible-table {
+    align: center;
+    display: block;    
+    margin-left:50%;
+    margin-right:50%;
+    margin:0 auto;
+    position: relative;
+    width: 800px;
 }

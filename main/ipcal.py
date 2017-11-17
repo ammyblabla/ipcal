@@ -125,20 +125,20 @@ def all_possible_network(ip, prefix):
         ip_detail['broadcast'] = str(broadcast_address(this_ip, prefix))
         print(ip_detail)
         ans.append(ip_detail)
-    # print(ans)
+    return ans
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 #     # ip_str = input()
 #     # prefix = int(input())
-    ip_str = '158.108.255.24'
-#     ip_str = '255.255.255.255'
-    ip = ipaddress.IPv4Address(ip_str)
-    prefix = 28
+    # ip_str = '158.108.255.24'
+#     ip_str = '255.255.2 ip_network = get_ip_network(ip, prefix)
+    # ip = ipaddress.IPv4Address(ip_str)
+    # prefix = 28
 #     print(wildcard_mask(prefix))
 #     print(bin(int(wildcard_mask(prefix))))
 #     subnet = gen_subnet(prefix)
-    ip_network = get_ip_network(ip, prefix)
+    # ip_network = get_ip_network(ip, prefix)
 #     # print(network_address(ip, prefix))
 #     # print(broadcast_address(ip, prefix))
 #     # print(host_no(prefix))
