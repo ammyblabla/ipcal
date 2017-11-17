@@ -56,6 +56,7 @@ def result(request):
         'int_ip' : int(ip),
         'all_possible_network' : all_possible_network(ip, prefix),
         'prefix_mod_eight' : prefix % 8,
+        'large_network' : large_network(ip, prefix),
     }
     print(context)
     return render(request, 'result.html', context)

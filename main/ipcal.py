@@ -136,3 +136,21 @@ def generate_all_subnet_list():
         tup = ((32-i),subnet_ip)
         ans_list.insert(i, tup)
     return tuple(ans_list)
+
+def large_network(ip, prefix):
+    network_ip = network_address(ip, prefix)
+    start_prefix = (prefix//8) * 8
+    big_ip = network_address(ip, start_prefix)
+    big_ip_list = str(big_ip).split('.')
+    ans = ''
+    for i in range(0, (32-start_prefix)//8):
+        big_ip_list[3-i] = '*'
+        # print(i)
+    point = '.'
+    return point.join(big_ip_list)
+
+if __name__ == '__main__':
+    ip = ipaddress.IPv4Address('158.108.10.10')
+    subnet = 17
+    print(large_network(ip, subnet))
+    
