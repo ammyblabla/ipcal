@@ -13,55 +13,122 @@
   <link rel="stylesheet" type="text/css" href="{% static '/main/result.css' %}">
   
   </head>
-  <body>
-    <br>
-    <h1>Result! {{ ip_full }} </h1>
-    <br>
+  <body
     <div class="container">
-      <div class="wrapper">
-        <table class="table-result table table-responsive table-hover text-centered">
-          <tbody>
-            <tr>
-              <td colspan="2">IP Address </td>
-              <td>{{ ip }}</td>
-            </tr>
-            <tr>
-              <td colspan="2">Network Address</td>
-              <td>{{ network_address }}</td>
-            </tr>
-            <tr>
-              <td colspan="2">Visible host IP range</td>
-              <td>{{ usable_range }}</td>
-            </tr>
-            <tr>
-              <td colspan="2">Broadcast address</td>
-              <td>{{ broadcast_address }}</td>
-            </tr>
-            <tr>
-              <td colspan="2">Total number of host</td>
-              <td>{{ ip_amount }}</td>
-            </tr>
-            <tr>
-              <td colspan="2">Number of Usable Hosts</td>
-              <td>{{ ip_usable }}</td>
-            </tr>
-            <tr>
-              <td colspan="2">Subnet mask</td>
-              <td>{{ subnet }}</td>
-            </tr>
-            <tr>
-              <td colspan="2">Class</td>
-              <td>{{ class }}</td>
-            </tr>
-            <tr>
-              <td colspan="2">CIDR Notation</td>
-              <td>{{ prefix }}</td>
-            </tr>
-          </tbody>
-        </table>
+      <br>
+      <h1>Result!</h1>
+      <br>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <table class="table-result table table-responsive table-hover text-centered">
+            <tbody class="detail-table">
+              <tr>
+                <td>IP Address </td>
+                <td>{{ ip }}</td>
+              </tr>
+              <tr>
+                <td>Network Address</td>
+                <td>{{ network_address }}</td>
+              </tr>
+              <tr>
+                <td>Usable Host IP Range</td>
+                <td>{{ usable_range }}</td>
+              </tr>
+              <tr>
+                <td>Broadcast address</td>
+                <td>{{ broadcast_address }}</td>
+              </tr>
+              <tr>
+                <td>Total number of host</td>
+                <td>{{ ip_amount }}</td>
+              </tr>
+              <tr>
+                <td>Number of Usable Hosts</td>
+                <td>{{ ip_usable }}</td>
+              </tr>
+              <tr>
+                <td>Subnet mask</td>
+                <td>{{ subnet }}</td>
+              </tr>
+              <tr>
+                <td>Wildcard Mask</td>
+                <td>{{ wildcard_mask }}</td>
+              </tr>
+              <tr>
+                <td>Binary Subnet Mask</td>
+                <td>{{ binary_subnet_mask }}</td>
+              </tr>
+              <tr>
+                <td>IP Class</td>
+                <td>{{ class }}</td>
+              </tr>
+              <tr>
+                <td>CIDR Notation</td>
+                <td>{{ prefix }}</td>
+              </tr>
+              <tr>
+                <td>IP Type</td>
+                <td>{{ type }}</td>
+              </tr>
+              <tr>
+                <td>short</td>
+                <td>{{ ip_full }}</td>
+              </tr>
+              <tr>
+                <td>Binary ID</td>
+                <td>{{ binary_ip }}</td>
+              </tr>
+              <tr>
+                <td>Integer ID</td>
+                <td>{{ int_ip }}</td>
+              </tr>
+              <tr>
+                <td>Hex ID</td>
+                <td>{{ hex_ip }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-2"></div>        
       </div>
+      <div class="row">
+        <br><br>
+      </div>
+
+      {% if prefix_mod_eight != 0%}
+        <div class="row">
+          <div class="container">
+            <table class="table-result table table-responsive table-hover text-centered">
+              <thead class="thead-dark all-possible-table">
+                <tr>
+                  <th scope="col" style="width: 200px">Network Address</th>
+                  <th scope="col" style="width: 300px">Usable Host Range</th>
+                  <th scope="col" style="width: 200px">Broadcast Address</th>
+                </tr>
+              </thead>
+              <tbody class="all-possible-table">
+                {% for possible_network in all_possible_network%}
+                <tr>
+                  <td style="width: 200px">{{ possible_network.this_ip }}</td>                
+                  <td style="width: 300px">{{ possible_network.range }}</td>
+                  <td style="width: 200px">{{ possible_network.broadcast }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      {% endif %}
     </div>
     <a href="{% url 'index' %}"><button type="submit" class="btn btn-danger" name="submit" href="{% url 'index' %}">Go Back!</button></a>
-      
+    <br><br><br>        
   </body>
+  <footer class="footer blockquote-footer">
+    <div class="container">
+      <span class="text-muted">
+        Created by - Natnaree Asavaseri
+      </span>
+    </div>
+  </footer>
 </html>

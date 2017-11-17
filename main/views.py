@@ -21,11 +21,10 @@ def index(request):
         if input_form.is_valid():
             clean = input_form.cleaned_data
             ip_str = clean['ip']
-            if is_ip(ip_str):
-                print(clean)
-                ip_str = clean['ip']
-                prefix = int(clean['prefix'])
-                return redirect("/result")
+            # print(clean)
+            ip_str = clean['ip']
+            prefix = int(clean['prefix'])
+            return redirect("/result")
         else:
             print(input_form.errors)
     else:
@@ -41,15 +40,22 @@ def result(request):
     context = {
         'ip_full': str(get_ip_network(ip, prefix)),
         'ip': ip_str,
-        'prefix' : prefix,
+        'prefix' : '/'+str(prefix),
         'network_address' : str(network_address(ip, prefix)),
         'broadcast_address' : str(broadcast_address(ip, prefix)),
         'ip_amount' : host_no(prefix),
         'ip_usable' : usable_host_no(prefix),
         'subnet' : str(gen_subnet(prefix)),
         'class' : get_class(ip),
-        'usable_range' : usable_range(ip, prefix)
+        'usable_range' : usable_range(ip, prefix), 
+        'type' : ip_type(ip),
+        'binary_ip' : binary_ip(ip),
+        'wildcard_mask' : str(wildcard_mask(prefix)),
+        'binary_subnet_mask' : binary_subnet_mask(prefix),
+        'hex_ip' :hex_ip(ip),
+        'int_ip' : int(ip),
+        'all_possible_network' : all_possible_network(ip, prefix),
+        'prefix_mod_eight' : prefix % 8,
     }
-    # print(ip_str, prefix)
     print(context)
     return render(request, 'result.html', context)

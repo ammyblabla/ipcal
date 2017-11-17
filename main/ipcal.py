@@ -7,10 +7,14 @@ def gen_subnet(prefix):
     subnet_int = 0
     for i in range (0, 32):
         if i >= (32-prefix):
-            # print(i)
             subnet_int += 2**i
-    # print(subnet_int)
     return ipaddress.IPv4Address(subnet_int)
+
+def wildcard_mask(ip):
+    subnet = gen_subnet(ip)
+    ip_not_int = bit_not(int(subnet))
+    ip_not = ipaddress.IPv4Address(ip_not_int)
+    return ip_not
 
 def is_ip(ip_str):
     try:
@@ -22,7 +26,7 @@ def is_ip(ip_str):
 def is_prefix(prefix_str):
     try:
         prefix = int(prefix_str)
-        if (prefix > 0) and (prefix < 32):
+        if (prefix > 0) and (prefix <= 32):
             return True
         return False
     except:
@@ -37,7 +41,6 @@ def network_address(ip, prefix):
 def get_ip_network(ip, prefix):
     network_addr = network_address(ip, prefix)
     ip_network_string = str(network_addr) + '/' + str(prefix)
-    # print(ip_network_string)
     return ipaddress.ip_network(ip_network_string)
 
 def broadcast_address(ip, prefix):
@@ -47,9 +50,13 @@ def broadcast_address(ip, prefix):
     return ans
 
 def host_no(prefix):
+    if prefix == 32:
+        return 1
     return 2**(32-prefix)
 
 def usable_host_no(prefix):
+    if prefix == 32:
+        return 0
     return host_no(prefix) - 2
 
 def get_all_host(ip_network):
@@ -75,27 +82,57 @@ def usable_range(ip_addr, prefix):
     lower_bound = str(network_address(ip_addr, prefix)+1)
     return lower_bound + ' - ' + upper_bound
 
-# if __name__ == '__main__':
-#     # ip_str = input()
-#     # prefix = int(input())
-#     ip_str = '158.108.12.24'
-#     ip = ipaddress.IPv4Address(ip_str)
-#     prefix = 24
-#     subnet = gen_subnet(prefix)
-#     ip_network = get_ip_network(ip, prefix)
-#     # print(network_address(ip, prefix))
-#     # print(broadcast_address(ip, prefix))
-#     # print(host_no(prefix))
-#     # print(ip)
-#     # print(get_ip_network(ip, prefix))
-#     # print(get_all_host(ip_network))
-#     print(usable_range(ip, prefix))
+def binary_ip(ip):
+    ip_bin = bin(int(ip))
+    ip_str = str(ip_bin)[2::]
+    return ip_str
 
-# ip
-# network address
-# useable host ip range
-# broadcast address
-# total number of hosts
-# subnet mask
-# ip class
-# cidr notation (prefix)
+def binary_subnet_mask(prefix):
+    subnet_str = str(gen_subnet(prefix))
+    subnet_list_str = subnet_str.split('.')
+    subnet_bin_str = []
+    for i in subnet_list_str:
+        binary_str =  binary_ip(i)
+        while(len(binary_str) < 8):
+            binary_str = '0' + binary_str
+        subnet_bin_str.append(binary_str)
+    point = '.'
+    return point.join(subnet_bin_str)
+
+def hex_ip(ip):
+    return str(hex(int(ip)))
+
+def ip_type(ip):
+    if ip.is_multicast:
+        return 'Multicast'
+    elif ip.is_loopback:
+        return 'Loopback'
+    elif ip.is_private:
+        return 'Private'
+    else:
+        return 'Public'
+
+def all_possible_network(ip, prefix):
+    network_ip = network_address(ip, prefix)
+    start_prefix = (prefix//8) * 8
+    network_ip_for_start_prefix = network_address(ip, start_prefix)
+    ans = []
+    for i in range(0, 2**(prefix - start_prefix)):
+        ip_detail = {}
+        this_ip_int = (i)*(2 ** (32-prefix)) + int(network_ip_for_start_prefix)
+        this_ip = ipaddress.IPv4Address(this_ip_int)
+        ip_detail['this_ip'] = str(this_ip)
+        ip_detail['range'] = usable_range(this_ip, prefix)
+        ip_detail['broadcast'] = str(broadcast_address(this_ip, prefix))
+        print(ip_detail)
+        ans.append(ip_detail)
+    return ans
+
+
+def generate_all_subnet_list():
+    ans_list=[]
+    for i in range(0, 32):
+        subnet_ip = str(gen_subnet(32-i))+'/'+str(32-i)
+        tup = ((32-i),subnet_ip)
+        ans_list.insert(i, tup)
+    return tuple(ans_list)
