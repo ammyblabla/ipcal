@@ -7,18 +7,13 @@ def gen_subnet(prefix):
     subnet_int = 0
     for i in range (0, 32):
         if i >= (32-prefix):
-            # print(i)
             subnet_int += 2**i
-    # print(subnet_int)
     return ipaddress.IPv4Address(subnet_int)
 
 def wildcard_mask(ip):
-    # print(ip)
     subnet = gen_subnet(ip)
     ip_not_int = bit_not(int(subnet))
-    # print(bin(ip_not_int))
     ip_not = ipaddress.IPv4Address(ip_not_int)
-    # print(ip_not)
     return ip_not
 
 def is_ip(ip_str):
@@ -46,7 +41,6 @@ def network_address(ip, prefix):
 def get_ip_network(ip, prefix):
     network_addr = network_address(ip, prefix)
     ip_network_string = str(network_addr) + '/' + str(prefix)
-    # print(ip_network_string)
     return ipaddress.ip_network(ip_network_string)
 
 def broadcast_address(ip, prefix):
@@ -116,28 +110,45 @@ def ip_type(ip):
         return 'Private'
     else:
         return 'Public'
-        
 
-# if __name__ == '__main__':
+def all_possible_network(ip, prefix):
+    network_ip = network_address(ip, prefix)
+    start_prefix = (prefix//8) * 8
+    network_ip_for_start_prefix = network_address(ip, start_prefix)
+    ans = []
+    for i in range(0, 2**(prefix - start_prefix)):
+        ip_detail = {}
+        this_ip_int = (i)*(2 ** (32-prefix)) + int(network_ip_for_start_prefix)
+        this_ip = ipaddress.IPv4Address(this_ip_int)
+        ip_detail['this_ip'] = str(this_ip)
+        ip_detail['range'] = usable_range(this_ip, prefix)
+        ip_detail['broadcast'] = str(broadcast_address(this_ip, prefix))
+        print(ip_detail)
+        ans.append(ip_detail)
+    # print(ans)
+
+
+if __name__ == '__main__':
 #     # ip_str = input()
 #     # prefix = int(input())
-#     # ip_str = '158.108.12.24'
+    ip_str = '158.108.255.24'
 #     ip_str = '255.255.255.255'
-#     ip = ipaddress.IPv4Address(ip_str)
-#     prefix = 32
+    ip = ipaddress.IPv4Address(ip_str)
+    prefix = 28
 #     print(wildcard_mask(prefix))
 #     print(bin(int(wildcard_mask(prefix))))
 #     subnet = gen_subnet(prefix)
-#     ip_network = get_ip_network(ip, prefix)
+    ip_network = get_ip_network(ip, prefix)
 #     # print(network_address(ip, prefix))
 #     # print(broadcast_address(ip, prefix))
 #     # print(host_no(prefix))
 #     # print(ip)
 #     # print(get_ip_network(ip, prefix))
-#     # print(get_all_host(ip_network))
+    # print(get_all_host(ip_network))
 #     print(usable_range(ip, prefix))
     # print(wildcard_mask(ip))
     # wildcard_mask = wildcard_mask(ip)
     # print(bin(int(subnet)))
     # print(binary_subnet_mask(prefix))
     # print(ip_type(ip))
+    all_possible_network(ip, prefix)
