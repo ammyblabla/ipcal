@@ -97,28 +97,31 @@
       <div class="row">
         <br><br>
       </div>
-      <div class="row">
-        <div class="container">
-          <table class="table-result table table-responsive table-hover text-centered">
-            <thead class="thead-dark all-possible-table">
-              <tr>
-                <th scope="col" style="width: 200px">Network Address</th>
-                <th scope="col" style="width: 300px">Usable Host Range</th>
-                <th scope="col" style="width: 200px">Broadcast Address</th>
-              </tr>
-            </thead>
-            <tbody class="all-possible-table">
-              {% for possible_network in all_possible_network%}
-              <tr>
-                <td style="width: 200px">{{ possible_network.this_ip }}</td>                
-                <td style="width: 300px">{{ possible_network.range }}</td>
-                <td style="width: 200px">{{ possible_network.broadcast }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+
+      {% if prefix_mod_eight != 0%}
+        <div class="row">
+          <div class="container">
+            <table class="table-result table table-responsive table-hover text-centered">
+              <thead class="thead-dark all-possible-table">
+                <tr>
+                  <th scope="col" style="width: 200px">Network Address</th>
+                  <th scope="col" style="width: 300px">Usable Host Range</th>
+                  <th scope="col" style="width: 200px">Broadcast Address</th>
+                </tr>
+              </thead>
+              <tbody class="all-possible-table">
+                {% for possible_network in all_possible_network%}
+                <tr>
+                  <td style="width: 200px">{{ possible_network.this_ip }}</td>                
+                  <td style="width: 300px">{{ possible_network.range }}</td>
+                  <td style="width: 200px">{{ possible_network.broadcast }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      {% endif %}
     </div>
     <a href="{% url 'index' %}"><button type="submit" class="btn btn-danger" name="submit" href="{% url 'index' %}">Go Back!</button></a>
     <br><br><br>        
