@@ -57,6 +57,5 @@ def result(request):
         'all_possible_network' : all_possible_network(ip, prefix),
         'prefix_mod_eight' : prefix%8,
     }
-    print(prefix%8)
     print(context)
     return render(request, 'result.html', context)

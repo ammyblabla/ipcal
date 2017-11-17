@@ -42,3 +42,13 @@ footer {
 body {
     height: 1024px;
 }
+
+.network-class {
+    width:600px; 
+    display: block;
+    /* text-align: center; */
+    /* max-width: 600px; */
+    margin-left:50%;
+    margin-right:50%;
+    margin:0 auto;
+}
