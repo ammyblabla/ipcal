@@ -23,6 +23,8 @@ class InputForm(forms.Form):
         widget = forms.Select(
             attrs = {
                 'name': 'prefix',
+                # 'class': "dropdown-menu",
+                # 'aria-labelledby': "dropdownMenuButton",
             }
         ) ,
         choices = subnet_list,

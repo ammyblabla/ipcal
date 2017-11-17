@@ -55,7 +55,7 @@ def result(request):
         'hex_ip' :hex_ip(ip),
         'int_ip' : int(ip),
         'all_possible_network' : all_possible_network(ip, prefix),
-        'prefix_mod_eight' : prefix%8,
+        'prefix_mod_eight' : prefix % 8,
     }
     print(context)
     return render(request, 'result.html', context)

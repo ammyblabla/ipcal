@@ -93,13 +93,15 @@ def binary_subnet_mask(prefix):
     subnet_bin_str = []
     for i in subnet_list_str:
         binary_str =  binary_ip(i)
-        print(binary_str)
+        while(len(binary_str) < 8):
+            binary_str = '0' + binary_str
+        # print(binary_str)
         subnet_bin_str.append(binary_str)
     point = '.'
     return point.join(subnet_bin_str)
 
 def hex_ip(ip):
-    return str(hex(int(ip)))[2::]
+    return str(hex(int(ip)))
 
 def ip_type(ip):
     if ip.is_multicast:
@@ -144,7 +146,7 @@ def generate_all_subnet_list():
     # ip_str = '158.108.255.24'
 #     ip_str = '255.255.2 ip_network = get_ip_network(ip, prefix)
     # ip = ipaddress.IPv4Address(ip_str)
-    # prefix = 28
+    # prefix = 8
     # print(generate_all_subnet_list())
 #     print(wildcard_mask(prefix))
 #     print(bin(int(wildcard_mask(prefix))))
@@ -160,6 +162,6 @@ def generate_all_subnet_list():
     # print(wildcard_mask(ip))
     # wildcard_mask = wildcard_mask(ip)
     # print(bin(int(subnet)))
-    # print(binary_subnet_mask(prefix))
+    print(binary_subnet_mask(prefix))
     # print(ip_type(ip))
     # all_possible_network(ip, prefix)
