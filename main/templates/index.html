@@ -39,14 +39,13 @@
             </div>
             <div class="form-check form-check-inline">
               <label class="form-check-label">
-                <input class="form-check-input" type="radio"> B
+                <input class="form-check-input" type="radio"> C
               </label>
             </div>
           </div>
           <br>
           <form class="form-cal" method = "POST" name="submit" value="submit" action="">
             {% csrf_token %}
-            {% comment %} {{ input_form }} {% endcomment %}
             <div class="form-group">
               <label>IPv4 Address</label>
               {{ input_form.ip.errors }}
@@ -55,11 +54,11 @@
               </span>
             </div>
             <div class="form-group">
-              <label>Prefix</label>
-              {{ input_form.prefix.errors }}
-              <span class="input-box">              
+              <label>Subnet</label>
+              {% comment %} {{ input_form.prefix.errors }} {% endcomment %}
+              {% comment %} <span class="input-box">               {% endcomment %}
                 {{ input_form.prefix }}
-              </span>
+              {% comment %} </span> {% endcomment %}
               <!-- <input class="form-control" id="exampleInputPassword1" placeholder="1-31" name="prefix"> -->
             </div>
             <br>

@@ -128,6 +128,16 @@ def all_possible_network(ip, prefix):
     return ans
 
 
+def generate_all_subnet_list():
+    ans_list=[]
+    for i in range(0, 32):
+        subnet_ip = str(gen_subnet(32-i))+'/'+str(32-i)
+        tup = ((32-i),subnet_ip)
+        # ans_list.append(tup)
+        # >>> my_choices.insert(0,(0,"another choice"))
+        ans_list.insert(i, tup)
+    return tuple(ans_list)
+
 # if __name__ == '__main__':
 #     # ip_str = input()
 #     # prefix = int(input())
@@ -135,6 +145,7 @@ def all_possible_network(ip, prefix):
 #     ip_str = '255.255.2 ip_network = get_ip_network(ip, prefix)
     # ip = ipaddress.IPv4Address(ip_str)
     # prefix = 28
+    # print(generate_all_subnet_list())
 #     print(wildcard_mask(prefix))
 #     print(bin(int(wildcard_mask(prefix))))
 #     subnet = gen_subnet(prefix)
@@ -151,4 +162,4 @@ def all_possible_network(ip, prefix):
     # print(bin(int(subnet)))
     # print(binary_subnet_mask(prefix))
     # print(ip_type(ip))
-    all_possible_network(ip, prefix)
+    # all_possible_network(ip, prefix)
